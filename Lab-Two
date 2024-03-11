@@ -1,0 +1,169 @@
+Lab 2: Managing users and Groups
+
+### Task 1: Verify Users
+# Verify logged-in user
+id
+pwd
+whoami
+who
+w
+
+### Task 2: Users in linux
+
+# Add users user1 & user2
+useradd user1
+useradd user2
+
+# Set passwords for user1 & user2
+passwd user1
+passwd user2
+
+# Get UID & GID for user1 & user2
+id user1
+id user2
+
+# Switch to user1
+su user1
+whoami
+exit
+
+# Switch to user2
+su user2
+whoami
+exit
+
+# View contents of passwd file
+cat /etc/passwd
+tail /etc/passwd
+
+# View contents of shadow file
+cat /etc/shadow
+tail /etc/shadow
+
+# View details of user1 & user2 in passwd file
+cat /etc/passwd | grep user1
+cat /etc/passwd | grep user2
+
+# Modify user2's comment & shell
+usermod -c "IT Admin" user2
+usermod -s /bin/sh user2
+cat /etc/passwd | grep user2
+
+# Create user user3 with specified details
+useradd user3 -c "HR Admin" -d /mnt/user3 -u 30003 -g 40004
+
+# Verify user3 creation
+cat /etc/passwd | grep user3
+
+# Delete users user1 & user2
+userdel -r user1
+userdel -r user2
+
+# Verify deletion
+tail /etc/passwd
+```
+
+### Task 3: Managing Groups
+
+```
+# Create testuser1 & testuser2
+useradd testuser1
+useradd testuser2
+tail /etc/passwd
+
+# View contents of /etc/group
+cat /etc/group
+tail /etc/group
+
+# Create IT-group & add users to it
+groupadd IT-group
+usermod -G IT-group testuser1
+usermod -G IT-group testuser2
+tail /etc/group
+
+# Create HR-group with manual GID
+groupadd HR-group -g 4005
+tail /etc/group
+
+# Create testuser3 & add to IT-group
+useradd testuser3
+gpasswd -a testuser3 IT-group
+tail /etc/group
+
+# Delete testuser1 & testuser2 from IT-group
+gpasswd -d testuser2 IT-group
+gpasswd -d testuser1 IT-group
+tail /etc/group
+
+# Delete IT-group
+groupdel IT-group
+tail /etc/group
+```
+
+### Task 4: File Permissions
+
+```bash
+# Create testfolder & testfile
+mkdir testfolder
+touch testfile
+
+# Modify permissions for testfolder
+ls -ld testfolder/
+chmod g+w testfolder/
+ls -ld testfolder/
+chmod o-rwx testfolder/
+ls -ld testfolder/
+
+# Remove all permissions for group & others
+chmod go-rwx testfolder
+ls -ld testfolder
+
+# Check default permissions of testfile
+ls -ld testfile
+
+# Remove all permissions from testfile
+chmod a-rwx testfile
+ls -ld testfile
+
+# Grant full access to everyone
+chmod a+rwx testfile
+ls -ld testfile
+
+# Change permissions numerically
+chmod 644 testfile
+ls -ld testfile
+
+# Execute chown & chgrp commands
+ls -ld testfolder/
+chown new-user3 testfolder/
+ls -ld testfolder/
+chgrp test-group testfolder/
+ls -ld testfolder/
+```
+
+### Task 4: Create Hard Link and Soft Link
+
+```
+# Create file page1
+echo "Hello World" > page1
+ls -li page1
+
+# Create hard link page2
+ln page1 page2
+ls -li page1 page2
+
+# Add data to page1 & page2
+date > page1
+ls -li page1 page2
+cat page2
+ps >> page2
+cat page1
+
+# Create soft link page3
+ln -s page1 page3
+ls -li page1 page3
+rm -rf page1
+ls -li page1 page3
+```
+
+```
