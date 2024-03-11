@@ -53,6 +53,68 @@ history
 # Redirect current system date to time.txt file
 date > time.txt
 ```
+
+Task 3: Accessing Files and Directories
+# Create new directories
+mkdir Fruits Vegetables
+
+# List all directories and files
+ls
+
+# Change directory to Fruits
+cd Fruits/
+
+# Create new files
+touch banana mango apple
+
+# Navigate back to parent directory
+cd ..
+
+# Create new files within subdirectories
+touch Vegetables/{tomato,potato,chili}
+
+# Verify newly created files in Vegetables directory
+ls Vegetables/
+
+# Create new files
+touch orange corn
+
+# Move file 'orange' to Fruits directory
+mv orange Fruits/
+
+# Move file 'corn' to Vegetables directory
+mv corn Vegetables/
+
+# Create two new directories
+mkdir one two
+
+# Move to directory 'one' and copy files
+cd one/
+cp ~/Vegetables/corn ~/Fruits/banana .
+
+# Move back to parent directory
+cd ..
+
+# Move to directory 'two' and copy files
+cd two/
+cp ~/Vegetables/chili ~/Fruits/apple .
+cd ..
+
+# Install tree command package
+yum install tree -y
+
+# View filesystem structure
+tree
+
+# Long list contents of directories 'one' and 'two'
+ls -l one/ two/
+
+# Recursively remove directories 'one' and 'two'
+rm -rf one/ two/
+
+# List contents
+ls
+
 # Append current system date to time.txt file
 date >> time.txt
 ```
