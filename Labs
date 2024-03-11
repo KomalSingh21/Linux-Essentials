@@ -1,0 +1,61 @@
+Lab 1: Accessing Command Line in Linux
+```
+Task 1: Switching to Root User
+# Switch to the root user
+sudo su
+```
+Task 2: Basic Linux Commands
+# Print current working directory
+pwd
+```
+# Display current domain and username
+whoami
+```
+# Get information about logged-in users
+who
+```
+# Display currently logged-in users and their activities
+w
+```
+# List directories and files in current working directory
+ls
+```
+# List files and directories with specific attributes
+ls -l
+```
+# View contents of /etc/passwd file
+cat /etc/passwd
+```
+# View first ten lines of /etc/passwd file
+head /etc/passwd
+```
+# View last ten lines of /etc/passwd file
+tail /etc/passwd
+```
+# View top five lines of /etc/passwd file
+head -n5 /etc/passwd
+```
+# View last five lines of /etc/passwd file
+tail -n5 /etc/passwd
+```
+# Fetch word count, byte count, line count for /etc/passwd file
+wc /etc/passwd
+wc -w /etc/passwd
+wc -c /etc/passwd
+wc -l /etc/passwd
+```
+# Display file content or command output one page at a time
+less /etc/passwd
+```
+# Fetch all commands executed in the same terminal during earlier sessions
+history
+```
+# Redirect current system date to time.txt file
+date > time.txt
+```
+# Append current system date to time.txt file
+date >> time.txt
+```
+# View contents of time.txt file
+cat time.txt
+```
