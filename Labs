@@ -175,6 +175,7 @@ usermod -s /bin/sh user2
 cat /etc/passwd | grep user2
 
 # Create user user3 with specified details
+groupadd demo -g 40004
 useradd user3 -c "HR Admin" -d /mnt/user3 -u 30003 -g 40004
 
 # Verify user3 creation
@@ -292,3 +293,134 @@ ls -li page1 page3
 ```
 
 ```
+---------------------------------------------------------------------
+-----------------------------------------------------------------------
+Lab 3: Linux Storage
+
+Task 1: Create an Additional Primary Partition on Linux
+
+1. List Block Devices:
+   ```
+   # lsblk
+   ```
+
+2. Create Partition with fdisk:
+   ```
+   # fdisk /dev/xvdb
+   ```
+   a. Press "n" to add a new partition.  
+   b. Choose "p" for a primary partition.  
+   c. Select default partition number 1.  
+   d. Provide starting and ending sector (use default).  
+   e. Default options for sector sizes.  
+   f. Size of the partition.  
+   g. Key in "w" to write changes.
+
+3. Detect Partition Table:
+   ```
+   # partprobe
+   ```
+
+4. Format Partition:
+   ```
+   # mkfs.ext4 /dev/xvdb1
+   ```
+
+5. Mount Partition:
+   ```
+   # mkdir /mnt/ext4
+   # mount /dev/xvdb1 /mnt/ext4
+   ```
+
+6. Verify Mount:
+   ```
+   # df -h
+   # lsblk
+   ```
+
+7. Automount (Optional):
+   ```
+   # echo "/dev/xvdb1 /mnt/ext4 ext4 defaults 0 0" >> /etc/fstab
+   # cat /etc/fstab
+   ```
+
+Delete the Partition
+
+1. Edit fstab:
+   ```
+   # vi /etc/fstab
+   ```
+
+2. Unmount Partition:
+   ```
+   # umount /dev/xvdb1
+   ```
+
+3. Delete Partition with fdisk:
+   ```
+   # fdisk /dev/xvdb
+   ```
+
+4. Verify Deletion:
+   ```
+   # lsblk
+   # fdisk -l /dev/xvdb
+   ```
+
+Task 2: Swap Partitions
+
+1. **Format as Swap:**
+   ```
+   # fdisk /dev/xvdb
+   # mkswap /dev/xvdb1
+   ```
+
+2. **Activate Swap and Update fstab:**
+   ```
+   # swapon /dev/xvdb1
+   # blkid /dev/xvdb1
+   # echo "UUID=<uuid> swap swap defaults 0 0" >> /etc/fstab
+   # tail -n1 /etc/fstab
+   ```
+
+Task 3: Archive & Compression
+
+1. **Create Archive Directory:**
+   ```
+   # mkdir archive
+   # cd archive/
+   ```
+
+2. **Copy Files:**
+   ```
+   # cp /etc/passwd testfile
+   # cp /etc/passwd file1
+   # cp /etc/passwd file2
+   # cp /etc/passwd file3
+   # ls -l
+   ```
+
+3. **Create Archive:**
+   ```
+   # tar -cf archive.tar testfile
+   ```
+
+4. **Extract Files:**
+   ```
+   # rm -rf testfile
+   # ls -l
+   # tar -xf ~/archive/archive.tar
+   # ls -l
+   ```
+
+5. **Compress Files:**
+   ```
+   # gzip file1
+   # bzip2 file2
+   # xz file3
+   ```
+
+6. **Compare Sizes:**
+   ```
+   # ls -lk
+   ```
