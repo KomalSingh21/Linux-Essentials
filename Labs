@@ -266,7 +266,7 @@ chgrp test-group testfolder/
 ls -ld testfolder/
 ```
 
-### Task 4: Create Hard Link and Soft Link
+### Task 5: Create Hard Link and Soft Link
 
 ```
 # Create file page1
