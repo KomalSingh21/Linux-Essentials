@@ -424,3 +424,100 @@ Task 3: Archive & Compression
    ```
    # ls -lk
    ```
+---------------------------------------------------------------------
+-----------------------------------------------------------------------
+
+Lab 4: Process Management
+
+Task 1: Working with Linux Processes
+
+1. Start a process in the background. Verify it using the jobs command and note down the JobID.
+   ```bash
+   # cat /dev/zero >> /dev/null & 
+   # jobs
+   ```
+
+2. Bring a background process to the foreground, then terminate it using Ctrl+C.
+   ```bash
+   # cat /dev/zero >> /dev/null & 
+   # cat /dev/zero >> /dev/null & 
+   # jobs 
+   # fg %1 
+   press Ctrl+C
+   ```
+
+3. Terminate background processes.
+   ```bash
+   # cat /dev/zero >> /dev/null & 
+   # jobs 
+   ```
+
+4. View all running processes using the ps command.
+   ```bash
+   # ps 
+   # ps all
+   ```
+
+5. Monitor processes using the ps aux command.
+   ```bash
+   # ps aux
+   ```
+
+6. Search for a specific process using grep and terminate it with the kill command.
+   ```bash
+   # ps aux | grep cat 
+   # kill <pid>
+   ```
+
+Task 2: Working System Services
+
+To view, start, stop, restart, enable, or disable system services, use the systemctl command.
+
+1. Check the status of ssh.
+   ```bash
+   # systemctl status ssh
+   ```
+
+2. Stop and disable ssh, then check its status.
+   ```bash
+   # systemctl stop ssh
+   # systemctl disable ssh
+   # systemctl status ssh
+   ```
+
+3. Start and enable ssh, then check its status again.
+   ```bash
+   # systemctl start ssh
+   # systemctl enable ssh
+   # systemctl status ssh
+   ```
+---------------------------------------------------------------------
+-----------------------------------------------------------------------
+
+Lab 5 Monitoring and logging
+Task 1: Top command
+
+Top command is one of the most frequently used commands by administrators in daily administrative tasks. 
+It displays processor activity of server and displays processes managed by kernel in real time. 
+It shows information about running or sleeping processes with processor and memory utilized by them.
+This helps administrators to take correct action as per requirement. 
+
+```bash
+# top
+```
+
+Task 2: Htop command
+- Htop is the visual representation of top command
+- It gives real-time data visualization
+- It helps better representation of your system resources
+- You can do functions like increase or decrease priority, sort by columns, and much more
+
+```bash
+# htop
+```
+Task 3: Listing Running Processes
+You can track the execution of your own processes by employing the ps (process status) command and the ps aux command which is a tool to monitor processes running on your Linux system. 
+```bash
+# ps
+# ps aux
+```
