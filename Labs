@@ -557,3 +557,94 @@ Task 1: Working with crontab
        ```
 --------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
+
+Lab 7 Part-1: Installing And Managing Software in Red Hat, CentOS, Fedora Linux
+
+Installing new software packages in Linux can be efficiently managed using the YUM package manager.
+
+Task 1: Working with YUM
+
+1. Display YUM Options:
+   ```bash
+   yum --help
+   ```
+
+2. List Enabled Repositories:
+   ```bash
+   yum repolist all
+   ```
+
+3. Clean YUM Cache:
+   ```bash
+   yum clean all
+   ```
+
+4. Update Installed Packages:
+   ```bash
+   yum update
+   ```
+
+Task 2: Installing HTTPD Package
+
+1. Check Installed Packages and Install HTTPD:
+   ```bash
+   yum list installed
+   yum list available
+   yum search httpd
+   yum install httpd -y
+   ```
+
+2. Verify Installation of HTTPD:
+   ```bash
+   yum list installed | grep httpd
+   rpm -qa httpd
+   ```
+
+Task 3: Removing HTTPD Package
+
+1. Remove HTTPD Package:
+   ```bash
+   yum remove httpd -y
+   ```
+
+Lab 7 Part-2: Installing and Managing Software in Ubuntu Linux
+
+For Ubuntu Linux, the apt package manager is used for installing and managing software packages. 
+
+Task 1: Working with apt-get
+
+1. Display apt-get Options:
+   ```bash
+   apt-get --help
+   ```
+
+2. Update Installed Packages:
+   ```bash
+   apt-get update
+   ```
+
+Task 2: Installing apache2 Package
+
+1. Install apache2 Package:
+   ```bash
+   apt-get install apache2 -y
+   ```
+
+2. Verify Installation:
+   - Open a web browser and type the following in the address bar:
+     ```
+     http://localhost/
+     ```
+     Or
+     ```
+     Private IP
+     ```
+
+Task 3: Removing apache2 Package
+
+1. Remove apache2 Package:
+   ```bash
+   apt-get remove apache2
+   ```
+-----------------------------------------------------------------
+------------------------------------------------------------------
