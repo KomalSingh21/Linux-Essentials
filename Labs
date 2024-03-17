@@ -648,3 +648,85 @@ Task 3: Removing apache2 Package
    ```
 -----------------------------------------------------------------
 ------------------------------------------------------------------
+Lab 8: Networking in Linux - Cheat Sheet
+
+Task 1 - IP Configurations:
+
+List all network interfaces:
+   ip link show
+   ip addr
+
+View IP address of a specific interface (e.g., eth0):
+   ip addr show eth0
+
+Use NetworkManager via CLI:
+   nmcli
+
+Display all network interfaces:
+   nmcli con show
+
+Display active network interfaces:
+   nmcli con show --active
+
+Check device status:
+   nmcli dev status
+
+View contents of hosts file:
+   cat /etc/hosts
+
+Add IP address to hosts file and check connectivity with ping:
+   echo "172.217.219.113 db" >> /etc/hosts
+   cat /etc/hosts
+   ping db -c4
+
+Ping examples:
+   ping <IP_address>
+   ping 10.128.0.16
+   ping 10.128.0.16 -c3
+
+Task 2 - Checking Open Ports:
+
+View open TCP ports:
+   cat /etc/services | grep TCP
+
+View trailing entries in the services file:
+   tail /etc/services
+
+View TCP port 80:
+   grep -w '80/tcp' /etc/services
+   cat /etc/services | grep 80/tcp
+
+Using ss to List Open Ports:
+List all open non-listening sockets:
+   ss
+
+Using Netstat to List Open Ports:
+
+Install net-tools package:
+   yum install net-tools -y
+
+View all ports:
+   netstat -a
+
+Task 3 - Working with Firewall:
+
+Check firewall status:
+   firewall-cmd --state
+
+Start firewalld service and verify status:
+   systemctl start firewalld
+   firewall-cmd --state
+
+Add services in firewall:
+   firewall-cmd --permanent --add-service=http
+   firewall-cmd --reload
+   firewall-cmd --list-services
+
+Add ports in firewall:
+   firewall-cmd --permanent --add-port=80/tcp
+   firewall-cmd --permanent --add-port=443/tcp
+   firewall-cmd --reload
+   firewall-cmd --list-ports
+
+-----------------------------------------------------------------
+------------------------------------------------------------------
