@@ -730,3 +730,50 @@ Add ports in firewall:
 
 -----------------------------------------------------------------
 ------------------------------------------------------------------
+Lab 9: Secure Shell and Secure Copy - Cheat Sheet
+
+Task 1: Working with SSH:
+
+Check SSH service status:
+systemctl status sshd
+
+Ping the remote instance:
+ping <IP_address>
+ping 172.31.2.206 -c3
+
+Uncomment SSH configuration options:
+Edit SSH config file:
+vi /etc/ssh/sshd_config
+
+Uncomment PasswordAuthentication and PermitRootLogin if necessary. Save and exit (:wq).
+
+Restart SSH service:
+systemctl restart sshd
+
+Create remote SSH session:
+ssh root@192.168.10.5
+
+Task 2: SSH Key-based Authentication:
+
+Generate SSH key pair:
+ssh-keygen
+cat /root/.ssh/id_rsa.pub
+
+Copy public key to other instance:
+ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.10.5
+
+Task 3: SCP (Secure Copy):
+
+Create a file with current date and time:
+date > time.txt
+
+View files:
+ls
+
+View file content:
+cat time.txt
+
+Copy file to other instance:
+scp time.txt root@172.31.2.206:/root/
+
+Replace <IP_address> and <use your respective IP> with actual IP addresses as needed.
