@@ -679,10 +679,6 @@ Add IP address to hosts file and check connectivity with ping:
    cat /etc/hosts
    ping db -c4
 
-Ping examples:
-   ping <IP_address>
-   ping 10.128.0.16
-   ping 10.128.0.16 -c3
 
 Task 2 - Checking Open Ports:
 
