@@ -648,7 +648,7 @@ Task 3: Removing apache2 Package
    ```
 -----------------------------------------------------------------
 ------------------------------------------------------------------
-Lab 8: Networking in Linux - Cheat Sheet
+Lab 8: Networking in Linux 
 
 Task 1 - IP Configurations:
 
@@ -730,7 +730,7 @@ Add ports in firewall:
 
 -----------------------------------------------------------------
 ------------------------------------------------------------------
-Lab 9: Secure Shell and Secure Copy - Cheat Sheet
+Lab 9: Secure Shell and Secure Copy 
 
 Task 1: Working with SSH:
 
