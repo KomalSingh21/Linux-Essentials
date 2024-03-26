@@ -135,7 +135,7 @@ cd one/
 ```
 cp ~/Vegetables/corn ~/Fruits/banana .
 ```
-# Move back to the parent directory
+Move back to the parent directory
 ```
 cd ..
 ```
@@ -186,177 +186,337 @@ cat time.txt
 ### Task 1: Verify Users
 
 Verify logged-in user
+```
 id
+```
+```
 pwd
+```
+```
 whoami
+```
+```
 who
+```
+```
 w
-
+```
 ### Task 2: Users in linux
 
-# Add users user1 & user2
+Add users user1 & user2
+```
 useradd user1
+```
+```
 useradd user2
+```
 
-# Set passwords for user1 & user2
+Set passwords for user1 & user2
+```
 passwd user1
+```
+```
 passwd user2
+```
 
-# Get UID & GID for user1 & user2
+Get UID & GID for user1 & user2
+```
 id user1
+```
+```
 id user2
-
-# Switch to user1
+```
+Switch to user1
+```
 su user1
+```
+```
 whoami
+```
+```
 exit
+```
 
-# Switch to user2
+Switch to user2
+```
 su user2
+```
+```
 whoami
+```
+```
 exit
+```
 
-# View contents of passwd file
+View contents of passwd file
+```
 cat /etc/passwd
+```
+```
 tail /etc/passwd
+```
 
-# View contents of shadow file
+View the contents of the shadow file
+```
 cat /etc/shadow
+```
+```
 tail /etc/shadow
+```
 
-# View details of user1 & user2 in passwd file
+View details of user1 & user2 in passwd file
+```
 cat /etc/passwd | grep user1
+```
+```
 cat /etc/passwd | grep user2
+```
 
-# Modify user2's comment & shell
+Modify user2's comment & shell
+```
 usermod -c "IT Admin" user2
+```
+```
 usermod -s /bin/sh user2
+```
+```
 cat /etc/passwd | grep user2
+```
 
-# Create user user3 with specified details
+Create user user3 with specified details
+```
 groupadd demo -g 40004
+```
+```
 useradd user3 -c "HR Admin" -d /mnt/user3 -u 30003 -g 40004
+```
 
-# Verify user3 creation
+Verify user3 creation
+```
 cat /etc/passwd | grep user3
+```
 
-# Delete users user1 & user2
+Delete users user1 & user2
+```
 userdel -r user1
+```
+```
 userdel -r user2
+```
 
-# Verify deletion
+Verify deletion
+```
 tail /etc/passwd
 ```
 
 ### Task 3: Managing Groups
 
+Create testuser1 & testuser2
 ```
-# Create testuser1 & testuser2
 useradd testuser1
+```
+```
 useradd testuser2
+```
+```
 tail /etc/passwd
+```
 
-# View contents of /etc/group
+View contents of /etc/group
+```
 cat /etc/group
+```
+```
 tail /etc/group
+```
 
-# Create IT-group & add users to it
+Create IT-group & add users to it.
+```
 groupadd IT-group
+```
+```
 usermod -G IT-group testuser1
+```
+```
 usermod -G IT-group testuser2
+```
+```
 tail /etc/group
+```
 
-# Create HR-group with manual GID
+Create HR-group with manual GID
+```
 groupadd HR-group -g 4005
+```
+```
 tail /etc/group
+```
 
-# Create testuser3 & add to IT-group
+Create testuser3 & add to IT-group
+```
 useradd testuser3
+```
+```
 gpasswd -a testuser3 IT-group
+```
+```
 tail /etc/group
+```
 
-# Delete testuser1 & testuser2 from IT-group
+Delete testuser1 & testuser2 from IT-group
+```
 gpasswd -d testuser2 IT-group
+```
+```
 gpasswd -d testuser1 IT-group
+```
+```
 tail /etc/group
+```
 
-# Delete IT-group
+Delete IT-group
+```
 groupdel IT-group
+```
+```
 tail /etc/group
 ```
 
 ### Task 4: File Permissions
 
-```bash
-# Create testfolder & testfile
+Create testfolder & testfile
+```
 mkdir testfolder
+```
+```
 touch testfile
+```
 
-# Modify permissions for testfolder
+Modify permissions for testfolder
+```
 ls -ld testfolder/
+```
+```
 chmod g+w testfolder/
+```
+```
 ls -ld testfolder/
+```
+```
 chmod o-rwx testfolder/
+```
+```
 ls -ld testfolder/
+```
 
-# Remove all permissions for group & others
+Remove all permissions for group & others
+```
 chmod go-rwx testfolder
+```
+```
 ls -ld testfolder
+```
 
-# Check default permissions of testfile
+Check default permissions of testfile
+```
 ls -ld testfile
+```
 
-# Remove all permissions from testfile
+Remove all permissions from testfile
+```
 chmod a-rwx testfile
+```
+```
 ls -ld testfile
+```
 
-# Grant full access to everyone
+Grant full access to every one
+```
 chmod a+rwx testfile
+```
+```
 ls -ld testfile
+```
 
-# Change permissions numerically
+Change permissions numerically
+```
 chmod 644 testfile
+```
+```
 ls -ld testfile
+```
 
-# Execute chown & chgrp commands
+Execute chown & chgrp commands
+```
 ls -ld testfolder/
+```
+```
 chown new-user3 testfolder/
+```
+```
 ls -ld testfolder/
+```
+```
 chgrp test-group testfolder/
+```
+```
 ls -ld testfolder/
 ```
 
 ### Task 5: Create Hard Link and Soft Link
 
+Create file page1
 ```
-# Create file page1
 echo "Hello World" > page1
+```
+```
 ls -li page1
+```
 
-# Create hard link page2
+Create hard link page2
+```
 ln page1 page2
+```
+```
 ls -li page1 page2
+```
 
-# Add data to page1 & page2
+Add data to page1 & page2
+```
 date > page1
+```
+```
 ls -li page1 page2
+```
+```
 cat page2
+```
+```
 ps >> page2
+```
+```
 cat page1
+```
 
-# Create soft link page3
+Create soft link page3
+```
 ln -s page1 page3
+```
+```
 ls -li page1 page3
+```
+```
 rm -rf page1
+```
+```
 ls -li page1 page3
 ```
 
-```
----------------------------------------------------------------------
------------------------------------------------------------------------
-Lab 3: Linux Storage
+---------------------------------------------------------------------------------------------------------------------------------------
 
-Task 1: Create an Additional Primary Partition on Linux
+## Lab 3: Linux Storage
+
+### Task 1: Create an Additional Primary Partition on Linux
 
 1. List Block Devices:
    ```
