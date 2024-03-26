@@ -1,132 +1,191 @@
-Lab 1: Accessing Command Line in Linux
+Linux Lab Cheatsheet
+=====================================================================================
+Login to AWS Console
+
+## Lab 1: Accessing Command Line in Linux
+
+### Task 1: Switching to Root User
+Switch to the root user
 ```
-Task 1: Switching to Root User
-# Switch to the root user
 sudo su
 ```
-Task 2: Basic Linux Commands
-# Print current working directory
+### Task 2: Basic Linux Commands
+Print the current working directory
+```
 pwd
 ```
-# Display current domain and username
+Display current domain and username
+```
 whoami
 ```
-# Get information about logged-in users
+Get information about logged-in users
+```
 who
 ```
-# Display currently logged-in users and their activities
+Display currently logged-in users and their activities
+```
 w
 ```
-# List directories and files in current working directory
+List directories and files in the current working directory
+```
 ls
 ```
-# List files and directories with specific attributes
+List files and directories with specific attributes
+```
 ls -l
 ```
-# View contents of /etc/passwd file
+View contents of /etc/passwd file
+```
 cat /etc/passwd
 ```
-# View first ten lines of /etc/passwd file
+View first ten lines of /etc/passwd file
+```
 head /etc/passwd
 ```
-# View last ten lines of /etc/passwd file
+View last ten lines of /etc/passwd file
+```
 tail /etc/passwd
 ```
-# View top five lines of /etc/passwd file
+View top five lines of /etc/passwd file
+```
 head -n5 /etc/passwd
 ```
-# View last five lines of /etc/passwd file
+
+View last five lines of /etc/passwd file
+```
 tail -n5 /etc/passwd
 ```
-# Fetch word count, byte count, line count for /etc/passwd file
+Fetch word count, byte count, line count for /etc/passwd file
+```
 wc /etc/passwd
 wc -w /etc/passwd
 wc -c /etc/passwd
 wc -l /etc/passwd
 ```
-# Display file content or command output one page at a time
+
+Display file content or command output one page at a time
+```
 less /etc/passwd
 ```
-# Fetch all commands executed in the same terminal during earlier sessions
+
+Fetch all commands executed in the same terminal during earlier sessions
+```
 history
 ```
-# Redirect current system date to time.txt file
+Redirect current system date to time.txt file
+```
 date > time.txt
 ```
 
-Task 3: Accessing Files and Directories
-# Create new directories
+### Task 3: Accessing Files and Directories
+Create new directories
+```
 mkdir Fruits Vegetables
+```
 
-# List all directories and files
+List all directories and files
+```
 ls
+```
 
-# Change directory to Fruits
+Change directory to Fruits
+```
 cd Fruits/
+```
 
-# Create new files
+Create new files
+```
 touch banana mango apple
+```
 
-# Navigate back to parent directory
+Navigate back to parent directory
+```
 cd ..
+```
 
-# Create new files within subdirectories
+Create new files within subdirectories
+```
 touch Vegetables/{tomato,potato,chili}
+```
 
-# Verify newly created files in Vegetables directory
+Verify newly created files in the Vegetables directory
+```
 ls Vegetables/
-
-# Create new files
+```
+Create new files
+```
 touch orange corn
-
-# Move file 'orange' to Fruits directory
+```
+Move file 'orange' to Fruits directory
+```
 mv orange Fruits/
-
-# Move file 'corn' to Vegetables directory
+```
+Move file 'corn' to Vegetables directory
+```
 mv corn Vegetables/
-
-# Create two new directories
+```
+Create two new directories
+```
 mkdir one two
-
-# Move to directory 'one' and copy files
+```
+Move to directory 'one' and copy files
+```
 cd one/
+```
+```
 cp ~/Vegetables/corn ~/Fruits/banana .
-
-# Move back to parent directory
+```
+# Move back to the parent directory
+```
 cd ..
-
-# Move to directory 'two' and copy files
+```
+Move to directory 'two' and copy files
+```
 cd two/
+```
+```
 cp ~/Vegetables/chili ~/Fruits/apple .
+```
+```
 cd ..
-
-# Install tree command package
+```
+Install tree command package
+```
 yum install tree -y
-
-# View filesystem structure
+```
+View filesystem structure
+```
 tree
-
-# Long list contents of directories 'one' and 'two'
+```
+Long list contents of directories 'one' and 'two'
+```
 ls -l one/ two/
+```
 
-# Recursively remove directories 'one' and 'two'
+Recursively remove directories 'one' and 'two'
+```
 rm -rf one/ two/
-
-# List contents
+```
+List contents
+```
 ls
+```
 
-# Append current system date to time.txt file
+Append current system date to time.txt file
+```
 date >> time.txt
 ```
-# View contents of time.txt file
+View contents of time.txt file
+```
 cat time.txt
 ```
----------------------------------------------------------------------
------------------------------------------------------------------------
-Lab 2: Managing users and Groups
+--------------------------------------------------------------------------------------
+
+## Lab 2: Managing Users and Groups
 
 ### Task 1: Verify Users
-# Verify logged-in user
+
+Verify logged-in user
 id
 pwd
 whoami
