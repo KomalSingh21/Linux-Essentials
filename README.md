@@ -518,477 +518,622 @@ ls -li page1 page3
 
 ### Task 1: Create an Additional Primary Partition on Linux
 
-1. List Block Devices:
-   ```
-   # lsblk
-   ```
+List Block Devices
+```
+lsblk
+```
 
-2. Create Partition with fdisk:
-   ```
-   # fdisk /dev/xvdb
-   ```
-   a. Press "n" to add a new partition.  
-   b. Choose "p" for a primary partition.  
-   c. Select default partition number 1.  
-   d. Provide starting and ending sector (use default).  
-   e. Default options for sector sizes.  
-   f. Size of the partition.  
-   g. Key in "w" to write changes.
+Create Partition with fdisk
+```
+fdisk /dev/xvdb
+```
+a. Press "n" to add a new partition.  
+b. Choose "p" for a primary partition.  
+c. Select default partition number 1.  
+d. Provide starting and ending sectors (use default).  
+e. Default options for sector sizes.  
+f. Size of the partition.  
+g. Key in "w" to write changes.
 
-3. Detect Partition Table:
-   ```
-   # partprobe
-   ```
+Detect Partition Table
+```
+partprobe
+```
 
-4. Format Partition:
-   ```
-   # mkfs.ext4 /dev/xvdb1
-   ```
+Format Partition
+```
+mkfs.ext4 /dev/xvdb1
+```
 
-5. Mount Partition:
-   ```
-   # mkdir /mnt/ext4
-   # mount /dev/xvdb1 /mnt/ext4
-   ```
+Mount Partition
+```
+mkdir /mnt/ext4
+```
+```
+mount /dev/xvdb1 /mnt/ext4
+```
 
-6. Verify Mount:
-   ```
-   # df -h
-   # lsblk
-   ```
+Verify Mount
+```
+df -h
+```
+```
+lsblk
+```
 
-7. Automount (Optional):
-   ```
-   # echo "/dev/xvdb1 /mnt/ext4 ext4 defaults 0 0" >> /etc/fstab
-   # cat /etc/fstab
-   ```
+Automount (Optional)
+```
+echo "/dev/xvdb1 /mnt/ext4 ext4 defaults 0 0" >> /etc/fstab
+```
+```
+cat /etc/fstab
+```
 
 Delete the Partition
 
-1. Edit fstab:
-   ```
-   # vi /etc/fstab
-   ```
+Edit fstab
+```
+vi /etc/fstab
+```
 
-2. Unmount Partition:
-   ```
-   # umount /dev/xvdb1
-   ```
+Unmount Partition
+```
+umount /dev/xvdb1
+```
 
-3. Delete Partition with fdisk:
-   ```
-   # fdisk /dev/xvdb
-   ```
+Delete Partition with fdisk
+```
+fdisk /dev/xvdb
+```
 
-4. Verify Deletion:
-   ```
-   # lsblk
-   # fdisk -l /dev/xvdb
-   ```
+Verify Deletion
+```
+lsblk
+```
+```
+fdisk -l /dev/xvdb
+```
 
-Task 2: Swap Partitions
+### Task 2: Swap Partitions
 
-1. **Format as Swap:**
-   ```
-   # fdisk /dev/xvdb
-   # mkswap /dev/xvdb1
-   ```
+Format as Swap
+```
+fdisk /dev/xvdb
+```
+```
+mkswap /dev/xvdb1
+```
 
-2. **Activate Swap and Update fstab:**
-   ```
-   # swapon /dev/xvdb1
-   # blkid /dev/xvdb1
-   # echo "UUID=<uuid> swap swap defaults 0 0" >> /etc/fstab
-   # tail -n1 /etc/fstab
-   ```
+Activate Swap and Update fstab
+```
+swapon /dev/xvdb1
+```
+```
+blkid /dev/xvdb1
+```
+```
+echo "UUID=<uuid> swap swap defaults 0 0" >> /etc/fstab
+```
+```
+tail -n1 /etc/fstab
+```
 
-Task 3: Archive & Compression
+### Task 3: Archive & Compression
 
-1. **Create Archive Directory:**
-   ```
-   # mkdir archive
-   # cd archive/
-   ```
+Create Archive Directory
+```
+mkdir archive
+```
+```
+cd archive/
+```
 
-2. **Copy Files:**
-   ```
-   # cp /etc/passwd testfile
-   # cp /etc/passwd file1
-   # cp /etc/passwd file2
-   # cp /etc/passwd file3
-   # ls -l
-   ```
+Copy Files
+```
+cp /etc/passwd testfile
+```
+```
+cp /etc/passwd file1
+```
+```
+cp /etc/passwd file2
+```
+```
+cp /etc/passwd file3
+```
+```
+ls -l
+```
 
-3. **Create Archive:**
-   ```
-   # tar -cf archive.tar testfile
-   ```
+Create Archive
+```
+tar -cf archive.tar testfile
+```
 
-4. **Extract Files:**
-   ```
-   # rm -rf testfile
-   # ls -l
-   # tar -xf ~/archive/archive.tar
-   # ls -l
-   ```
+Extract Files
+```
+rm -rf testfile
+```
+```
+ls -l
+```
+```
+tar -xf ~/archive/archive.tar
+```
+```
+ls -l
+```
 
-5. **Compress Files:**
-   ```
-   # gzip file1
-   # bzip2 file2
-   # xz file3
-   ```
+Compress Files
+```
+gzip file1
+```
+```
+bzip2 file2
+```
+```
+xz file3
+```
 
-6. **Compare Sizes:**
-   ```
-   # ls -lk
-   ```
----------------------------------------------------------------------
------------------------------------------------------------------------
+Compare Sizes
+```
+ls -lk
+```
+--------------------------------------------------------------------------------------------------------------------------------------
 
-Lab 4: Process Management
 
-Task 1: Working with Linux Processes
+## Lab 4: Process Management
 
-1. Start a process in the background. Verify it using the jobs command and note down the JobID.
-   ```bash
-   # cat /dev/zero >> /dev/null & 
-   # jobs
-   ```
+### Task 1: Working with Linux Processes
 
-2. Bring a background process to the foreground, then terminate it using Ctrl+C.
-   ```bash
-   # cat /dev/zero >> /dev/null & 
-   # cat /dev/zero >> /dev/null & 
-   # jobs 
-   # fg %1 
-   press Ctrl+C
-   ```
+Start a process in the background. Verify it using the jobs command and note down the JobID.
+```
+cat /dev/zero >> /dev/null &
+```
+```
+jobs
+```
 
-3. Terminate background processes.
-   ```bash
-   # cat /dev/zero >> /dev/null & 
-   # jobs 
-   ```
+Bring a background process to the foreground, then terminate it using Ctrl+C.
+```
+cat /dev/zero >> /dev/null &
+```
+```
+cat /dev/zero >> /dev/null &
+```
+```
+jobs
+```
+```
+fg %1
+```
+press Ctrl+C
+```
 
-4. View all running processes using the ps command.
-   ```bash
-   # ps 
-   # ps all
-   ```
+Terminate background processes.
+```
+cat /dev/zero >> /dev/null & 
+```
+```
+jobs 
+```
 
-5. Monitor processes using the ps aux command.
-   ```bash
-   # ps aux
-   ```
+View all running processes using the ps command.
+```
+ps 
+```
+```
+ps all
+```
 
-6. Search for a specific process using grep and terminate it with the kill command.
-   ```bash
-   # ps aux | grep cat 
-   # kill <pid>
-   ```
+Monitor processes using the ps aux command.
+```
+ps aux
+```
 
-Task 2: Working System Services
+Search for a specific process using grep and terminate it with the kill command.
+```
+ps aux | grep cat 
+```
+```
+kill <pid>
+```
+
+### Task 2: Working System Services
 
 To view, start, stop, restart, enable, or disable system services, use the systemctl command.
 
-1. Check the status of ssh.
-   ```bash
-   # systemctl status ssh
-   ```
+Check the status of ssh.
+```
+systemctl status ssh
+```
 
-2. Stop and disable ssh, then check its status.
-   ```bash
-   # systemctl stop ssh
-   # systemctl disable ssh
-   # systemctl status ssh
-   ```
+Stop and disable ssh, then check its status.
+```
+systemctl stop ssh
+```
+```
+systemctl disable ssh
+```
+```
+systemctl status ssh
+```
 
-3. Start and enable ssh, then check its status again.
-   ```bash
-   # systemctl start ssh
-   # systemctl enable ssh
-   # systemctl status ssh
-   ```
----------------------------------------------------------------------
------------------------------------------------------------------------
+Start and enable ssh, then check its status again.
+```
+systemctl start ssh
+```
+```
+systemctl enable ssh
+```
+```
+systemctl status ssh
+```
+--------------------------------------------------------------------------------------------------------------------------------------
 
-Lab 5 Monitoring and logging
-Task 1: Top command
+
+## Lab 5: Monitoring and logging
+### Task 1: Top command
 
 Top command is one of the most frequently used commands by administrators in daily administrative tasks. 
 It displays processor activity of server and displays processes managed by kernel in real time. 
 It shows information about running or sleeping processes with processor and memory utilized by them.
 This helps administrators to take correct action as per requirement. 
 
-```bash
-# top
+```
+top
 ```
 
-Task 2: Htop command
+### Task 2: Htop command
 - Htop is the visual representation of top command
 - It gives real-time data visualization
 - It helps better representation of your system resources
 - You can do functions like increase or decrease priority, sort by columns, and much more
 
-```bash
-# htop
 ```
-Task 3: Listing Running Processes
+htop
+```
+### Task 3: Listing Running Processes
 You can track the execution of your own processes by employing the ps (process status) command and the ps aux command which is a tool to monitor processes running on your Linux system. 
-```bash
-# ps
-# ps aux
 ```
----------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------
+ps
+```
+```
+ps aux
+```
+--------------------------------------------------------------------------------------------------------------------------------------
 
-Lab 6: Schedule Job On Linux
 
-Task 1: Working with crontab
+## Lab 6: Schedule Job On Linux
 
-1. Creating a cronjob to display the date into a file named date-file every minute:
-   - Use `crontab -e` to edit the scheduling for the root user:
-     ```bash
-     crontab -e
-     ```
-   - Add the following line to the crontab file:
-     ```bash
-     */1 * * * * date >> date-file
-     ```
-   - Save and exit the editor (`:wq` for Vim).
+### Task 1: Working with crontab
 
-2. Viewing the list of all schedules:
-   - Use `crontab -l` to display the list of all scheduled tasks:
-     ```bash
-     crontab -l
-     ```
+Creating a cronjob to display the date into a file named date-file every minute
+- Use `crontab -e` to edit the scheduling for the root user:
+```
+crontab -e
+```
+- Add the following line to the crontab file:
+```
+*/1 * * * * date >> date-file
+```
+- Save and exit the editor (`:wq` for Vim).
 
-3. Verifying that the date-file is saved:
-   - After setting up the cronjob, you can verify that the `date-file` is being saved by following these steps:
-     - Use `ls` command to list the files in the current directory:
-       ```bash
-       ls
-       ```
-     - Use `cat` command to display the contents of the `date-file`:
-       ```bash
-       cat date-file
-       ```
---------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------
+Viewing the list of all schedules:
+- Use `crontab -l` to display the list of all scheduled tasks:
+```
+crontab -l
+```
 
-Lab 7 Part-1: Installing And Managing Software in Red Hat, CentOS, Fedora Linux
+Verifying that the date-file is saved:
+- After setting up the cronjob, you can verify that the `date-file` is being saved by following these steps:
+- Use `ls` command to list the files in the current directory:
+ ```
+ ls
+ ```
+- Use `cat` command to display the contents of the `date-file`:
+ ```
+ cat date-file
+ ```
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+## Lab 7 Part-1: Installing And Managing Software in Red Hat, CentOS, Fedora Linux
 
 Installing new software packages in Linux can be efficiently managed using the YUM package manager.
 
-Task 1: Working with YUM
+## Task 1: Working with YUM
 
-1. Display YUM Options:
-   ```bash
-   yum --help
-   ```
+Display YUM Options
+```
+yum --help
+```
 
-2. List Enabled Repositories:
-   ```bash
-   yum repolist all
-   ```
+List Enabled Repositories
+```
+yum repolist all
+```
 
-3. Clean YUM Cache:
-   ```bash
-   yum clean all
-   ```
+Clean YUM Cache
+```
+yum clean all
+```
 
-4. Update Installed Packages:
-   ```bash
-   yum update
-   ```
+Update Installed Packages
+```
+yum update
+```
 
-Task 2: Installing HTTPD Package
+## Task 2: Installing HTTPD Package
 
-1. Check Installed Packages and Install HTTPD:
-   ```bash
-   yum list installed
-   yum list available
-   yum search httpd
-   yum install httpd -y
-   ```
+Check Installed Packages and Install HTTPD
+```
+yum list installed
+```
+```
+yum list available
+```
+```
+yum search httpd
+```
+```
+yum install httpd -y
+```
 
-2. Verify Installation of HTTPD:
-   ```bash
-   yum list installed | grep httpd
-   rpm -qa httpd
-   ```
+Verify Installation of HTTPD
+```
+yum list installed | grep httpd
+```
+```
+rpm -qa httpd
+```
 
-Task 3: Removing HTTPD Package
+### Task 3: Removing HTTPD Package
 
-1. Remove HTTPD Package:
-   ```bash
-   yum remove httpd -y
-   ```
+Remove HTTPD Package
+```
+yum remove httpd -y
+```
 
-Lab 7 Part-2: Installing and Managing Software in Ubuntu Linux
+## Lab 7 Part-2: Installing and Managing Software in Ubuntu Linux
 
 For Ubuntu Linux, the apt package manager is used for installing and managing software packages. 
 
-Task 1: Working with apt-get
+### Task 1: Working with apt-get
 
-1. Display apt-get Options:
-   ```bash
-   apt-get --help
-   ```
+Display apt-get Options
+```
+apt-get --help
+```
 
-2. Update Installed Packages:
-   ```bash
-   apt-get update
-   ```
+Update Installed Packages
+```
+apt-get update
+```
 
 Task 2: Installing apache2 Package
 
-1. Install apache2 Package:
-   ```bash
-   apt-get install apache2 -y
-   ```
+Install apache2 Package
+```
+apt-get install apache2 -y
+```
 
-2. Verify Installation:
-   - Open a web browser and type the following in the address bar:
-     ```
-     http://localhost/
-     ```
-     Or
-     ```
-     Private IP
-     ```
+Verify Installation
+- Open a web browser and type the following in the address bar:
+```
+http://localhost/
+```
+Or
+```
+Private IP
+```
 
-Task 3: Removing apache2 Package
+### Task 3: Removing Apache2 Package
 
-1. Remove apache2 Package:
-   ```bash
-   apt-get remove apache2
-   ```
------------------------------------------------------------------
-------------------------------------------------------------------
-Lab 8: Networking in Linux 
+Remove apache2 Package
+```
+apt-get remove apache2
+```
+--------------------------------------------------------------------------------------------------------------------------------------
 
-Task 1 - IP Configurations:
+## Lab 8: Networking in Linux 
 
-List all network interfaces:
-   ip link show
-   ip addr
+### Task 1 - IP Configurations
 
-View IP address of a specific interface (e.g., eth0):
-   ip addr show eth0
+List all network interfaces
+```
+ip link show
+```
+```
+ip addr
+```
 
-Use NetworkManager via CLI:
-   nmcli
+View IP address of a specific interface (e.g., eth0)
+```
+ip addr show eth0
+```
 
-Display all network interfaces:
-   nmcli con show
+Use NetworkManager via CLI
+```
+nmcli
+```
 
-Display active network interfaces:
-   nmcli con show --active
+Display all network interfaces
+```
+nmcli con show
+```
 
-Check device status:
-   nmcli dev status
+Display active network interfaces
+```
+nmcli con show --active
+```
 
-View contents of hosts file:
-   cat /etc/hosts
+Check device status
+```
+nmcli dev status
+```
 
-Add IP address to hosts file and check connectivity with ping:
-   echo "172.217.219.113 db" >> /etc/hosts
-   cat /etc/hosts
-   ping db -c4
+View contents of hosts file
+```
+cat /etc/hosts
+```
 
+Add IP address to hosts file and check connectivity with ping
+```
+echo "172.217.219.113 db" >> /etc/hosts
+```
+```
+cat /etc/hosts
+```
+```
+ping db -c4
+```
 
-Task 2 - Checking Open Ports:
+### Task 2 - Checking Open Ports
 
-View open TCP ports:
-   cat /etc/services | grep TCP
+View open TCP ports
+```
+cat /etc/services | grep TCP
+```
 
-View trailing entries in the services file:
-   tail /etc/services
+View trailing entries in the services file
+```
+tail /etc/services
+```
 
-View TCP port 80:
-   grep -w '80/tcp' /etc/services
-   cat /etc/services | grep 80/tcp
+View TCP port 80
+```
+grep -w '80/tcp' /etc/services
+```
+```
+cat /etc/services | grep 80/tcp
+```
 
-Using ss to List Open Ports:
+# Using ss to List Open Ports
 List all open non-listening sockets:
-   ss
+```
+ss
+```
 
 Using Netstat to List Open Ports:
+Install net-tools package
+```
+yum install net-tools -y
+```
 
-Install net-tools package:
-   yum install net-tools -y
+View all ports
+```
+netstat -a
+```
 
-View all ports:
-   netstat -a
+### Task 3 - Working with Firewall
 
-Task 3 - Working with Firewall:
+Check firewall status
+```
+firewall-cmd --state
+```
 
-Check firewall status:
-   firewall-cmd --state
+Start firewalld service and verify status
+```
+systemctl start firewalld
+```
+```
+firewall-cmd --state
+```
 
-Start firewalld service and verify status:
-   systemctl start firewalld
-   firewall-cmd --state
+Add services in firewalld
+```
+firewall-cmd --permanent --add-service=http
+```
+```
+firewall-cmd --reload
+```
+```
+firewall-cmd --list-services
+```
 
-Add services in firewall:
-   firewall-cmd --permanent --add-service=http
-   firewall-cmd --reload
-   firewall-cmd --list-services
+Add ports in firewalld
+```
+firewall-cmd --permanent --add-port=80/tcp
+```
+```
+firewall-cmd --permanent --add-port=443/tcp
+```
+```
+firewall-cmd --reload
+```
+```
+firewall-cmd --list-ports
+```
+--------------------------------------------------------------------------------------------------------------------------------------
 
-Add ports in firewall:
-   firewall-cmd --permanent --add-port=80/tcp
-   firewall-cmd --permanent --add-port=443/tcp
-   firewall-cmd --reload
-   firewall-cmd --list-ports
+## Lab 9: Secure Shell and Secure Copy 
 
------------------------------------------------------------------
-------------------------------------------------------------------
-Lab 9: Secure Shell and Secure Copy 
+### Task 1: Working with SSH
 
-Task 1: Working with SSH:
-
-Check SSH service status:
+Check SSH service status
+```
 systemctl status sshd
+```
 
-Ping the remote instance:
-ping <IP_address>
-ping 172.31.2.206 -c3
+Ping the remote instance
+```
+ping <IP_address> -c2
+```
 
-Uncomment SSH configuration options:
-Edit SSH config file:
+Uncomment SSH configuration options
+Edit SSH config file
+```
 vi /etc/ssh/sshd_config
+```
 
 Uncomment PasswordAuthentication and PermitRootLogin if necessary. Save and exit (:wq).
 
-Restart SSH service:
+Restart SSH service
+```
 systemctl restart sshd
+```
 
-Create remote SSH session:
+Create remote SSH session
+```
 ssh root@192.168.10.5
+```
 
-Task 2: SSH Key-based Authentication:
+### Task 2: SSH Key-based Authentication:
 
-Generate SSH key pair:
+Generate SSH key pair
+```
 ssh-keygen
+```
+```
 cat /root/.ssh/id_rsa.pub
+```
 
-Copy public key to other instance:
+Copy public key to other instance
+```
 ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.10.5
+```
 
-Task 3: SCP (Secure Copy):
+### Task 3: SCP (Secure Copy)
 
-Create a file with current date and time:
+Create a file with current date and time
+```
 date > time.txt
+```
 
-View files:
+View files
+```
 ls
+```
 
-View file content:
+View file content
+```
 cat time.txt
+```
 
-Copy file to other instance:
+Copy file to other instance
+```
 scp time.txt root@172.31.2.206:/root/
+```
 
 Replace <IP_address> and <use your respective IP> with actual IP addresses as needed.
