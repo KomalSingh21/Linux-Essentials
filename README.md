@@ -1,6 +1,5 @@
 Linux Lab Cheatsheet
 =====================================================================================
-Login to AWS Console
 
 ## Lab 1: Accessing Command Line in Linux
 
