@@ -708,7 +708,7 @@ jobs
 fg %1
 ```
 press Ctrl+C
-```
+
 
 Terminate background processes.
 ```
