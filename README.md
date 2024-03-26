@@ -911,7 +911,7 @@ Update Installed Packages
 apt-get update
 ```
 
-Task 2: Installing apache2 Package
+### Task 2: Installing apache2 Package
 
 Install apache2 Package
 ```
@@ -1009,7 +1009,7 @@ grep -w '80/tcp' /etc/services
 cat /etc/services | grep 80/tcp
 ```
 
-# Using ss to List Open Ports
+Using ss to List Open Ports
 List all open non-listening sockets:
 ```
 ss
